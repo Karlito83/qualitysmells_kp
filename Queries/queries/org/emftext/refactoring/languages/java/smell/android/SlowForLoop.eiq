@@ -7,14 +7,9 @@ import "http://www.emftext.org/java/types";
 import "http://www.emftext.org/java/variables";
 import "http://www.emftext.org/java/expressions";
 import "http://www.emftext.org/java/statements";
-import "http://www.emftext.org/java/generics"
+import "http://www.emftext.org/java/generics";
+import "http://www.emftext.org/java/literals";
 
-
-pattern test(a,b,c) {
-	Class.^extends(a,b);
-	ClassifierReference.target(b,c);
-	Classifier.name(c, "Iterable");
-}
 
 pattern allImplementorsOfList(a) {
 	Interface.name(interfaceReference, "List");
@@ -26,9 +21,24 @@ pattern allImplementorsOfList(a) {
 	//TypedElement.typeReference(actualInterface, a);
 }
 
+pattern forLoop(a){
+	ForLoop(a);
+}
+
+pattern forLoopInitializer(a,b){
+	ForLoop.init(x,c);
+	ExpressionList.expressions(c,a);
+	AssignmentExpression(a);
+	AssignmentExpression.value(a,b);
+	DecimalIntegerLiteral.decimalValue(b,0);
+}
+
 pattern forLoopCondition(a){
-	ForLoop.condition(forLoopRef,a);
-	RelationExpression(a);
+	//ForLoop(a);
+	ForLoop.condition(a,conditionRef);
+	RelationExpression.children(conditionRef,childRef);
+	IdentifierReference.target(childRef, b);
+	find iterableVariable(b);
 }
 
 pattern InterfaceTypeParametersTest(a){
@@ -37,31 +47,20 @@ pattern InterfaceTypeParametersTest(a){
 	//Variable
 }
 
-pattern iterableVariable(a,b){
+pattern iterableVariable(a){
 	Variable(a);
-	Variable.name(a, "test");
 	Variable.typeReference(a, ref);
 	NamespaceClassifierReference.classifierReferences(ref,ref2);
-	ClassifierReference.target(ref2, b);
-	
 	ClassifierReference.target(ref2,actualInterface);
-	find implementorOfIterable(actualInterface);
-	
-	//ClassifierReference.target(ref,b);
-	//Interface.typeParameters()
+	find implementorOfIterable(actualInterface);	
 }
 
 pattern implementorOfIterable(a){
 	Interface.name(actualInterface, "Iterable");
-	find ImplementsOrExtends+(a,actualInterface);
+	find implementsOrExtends+(a,actualInterface);
 }
 
-pattern extendsControl(a){
-	Class.name(actualClass, "Control");
-	find ImplementsOrExtends+(a, actualClass);
-}
-
-pattern ImplementsOrExtends(a,b){
+pattern implementsOrExtends(a,b){
 	Interface.^extends(a, classifierRef);
 	ClassifierReference.target(classifierRef, b);
 	//Interface(b);Variable.typeReference(a, typeReference);

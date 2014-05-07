@@ -1,9 +1,12 @@
 package org.emftext.refactoring.languages.java.smell.android.test;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class SlowForLoopTest {
+
+	List<Foo> test;
 
 	private class Foo {
 
@@ -42,13 +45,20 @@ public class SlowForLoopTest {
 			sum += a.mSplat;
 		}
 	}
-	
+
 	public void three() {
+		int i;
 		List<Foo> test = new LinkedList<Foo>();
+
+		for(i=0; i<test.size();i++){
+			//Do something
+		}
 		
-		int len = test.size();
+		for(i=0; i<this.test.size();i++){
+			//Do something
+		}
 		
-		for(int i=0;i<=test.size()-1;i++){
+		for(i=0; i<=test.size();i++){
 			
 		}
 	}
