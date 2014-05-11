@@ -25,13 +25,6 @@ pattern forLoop(a){
 	ForLoop(a);
 }
 
-pattern forLoopInitializer(a,b){
-	ForLoop.init(x,c);
-	ExpressionList.expressions(c,a);
-	AssignmentExpression(a);
-	AssignmentExpression.value(a,b);
-	DecimalIntegerLiteral.decimalValue(b,0);
-}
 
 pattern forLoopCondition(a){
 	//ForLoop(a);
@@ -39,6 +32,8 @@ pattern forLoopCondition(a){
 	RelationExpression.children(conditionRef,childRef);
 	IdentifierReference.target(childRef, b);
 	find iterableVariable(b);
+	IdentifierReference.next(childRef, methCallRef);
+	//MethodCall.target.name(methCallRef, "size");
 }
 
 pattern InterfaceTypeParametersTest(a){
