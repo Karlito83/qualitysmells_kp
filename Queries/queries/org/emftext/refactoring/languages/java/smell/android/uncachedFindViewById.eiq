@@ -1,0 +1,39 @@
+package org.emftext.refactoring.languages.java.smell.android
+
+import "http://www.emftext.org/java/classifiers";
+import "http://www.emftext.org/java/references";
+import "http://www.emftext.org/java/commons";
+import "http://www.emftext.org/java/types";
+import "http://www.emftext.org/java/variables";
+import "http://www.emftext.org/java/expressions";
+import "http://www.emftext.org/java/statements";
+import "http://www.emftext.org/java/generics"
+
+pattern uncachedView(a){
+	find findViewByIdCall(a);
+	neg find fewCalls();
+}
+
+//Due to gt and lt relations do not exist (yet) in IncQuery
+//Check that there are at least 5 occurances is done by negating
+//this check.
+pattern fewCalls(){
+	//find findViewByIdCall(a);
+	0 == count find findViewByIdCall(a);
+} or {
+	//find findViewByIdCall(a);
+	1 == count find findViewByIdCall(a);
+} or {
+	//find findViewByIdCall(a);
+	2 == count find findViewByIdCall(a);
+} or {
+	//find findViewByIdCall(a);
+	3 == count find findViewByIdCall(a);
+} or {
+	//find findViewByIdCall(a);
+	4 == count find findViewByIdCall(a);
+}
+
+pattern findViewByIdCall(a){
+	MethodCall.target.name(a, "findViewById");
+}
