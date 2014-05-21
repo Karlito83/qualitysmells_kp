@@ -1,0 +1,5 @@
+ROLEMODELMAPPING FOR <http://www.emftext.org/java>
+
+"Resize Untouchable" maps <SelectX> { 
+	 Selection := java.statements.ExpressionStatement;
+}

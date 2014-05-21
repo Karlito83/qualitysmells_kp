@@ -1,0 +1,5 @@
+ROLEMODELMAPPING FOR <http://www.emftext.org/java>
+
+"Add Close Statement" maps <SelectX> { 
+	 Selection := java.statements.ExpressionStatement;  
+}
