@@ -9,7 +9,7 @@ import "http://www.emftext.org/java/expressions";
 import "http://www.emftext.org/java/statements";
 import "http://www.emftext.org/java/generics"
 
-pattern uncachedView(a){
+pattern uncachedView(a : Expression){
 	find findViewByIdCall(a);
 	neg find fewCalls();
 }
