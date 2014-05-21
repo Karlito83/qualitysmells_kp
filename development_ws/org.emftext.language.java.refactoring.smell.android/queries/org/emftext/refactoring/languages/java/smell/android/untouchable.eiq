@@ -9,7 +9,7 @@ import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/variables"
 import "http://www.emftext.org/java/statements"
 import "http://www.emftext.org/java/instantiations"
-import "http://www.emftext.org/commons/layout"
+//import "http://www.emftext.org/commons/layout"
 
 pattern unTouchable(expression:ExpressionStatement){
 	Class.^extends(actualClass, superClassRef);

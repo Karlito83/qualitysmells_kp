@@ -34,10 +34,28 @@
             patternName="trackingHardwareId">
       </structureCalculation>
       <structureCalculation
-            smellMessage="Stinkt!"
-            description="Stinkt!"
-            patternResource="queries/org/emftext/refactoring/languages/java/smell/android/bla.eiq"
-            patternName="blablabla">
+            smellMessage="For Iterable types, a foreach loop should be used to iterate over the Collection"
+            description="For Iterable types, a foreach loop should be used to iterate over the Collection"
+            patternResource="queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq"
+            patternName="slowForLoop">
+      </structureCalculation>
+      <structureCalculation
+            smellMessage="If findViewById is called often, the queries should be cached."
+            description="If findViewById is called often, the queries should be cached."
+            patternResource="queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq"
+            patternName="uncachedView">
+      </structureCalculation>
+      <structureCalculation
+            smellMessage="The object is closable, but the close() method cannot be found."
+            description="Unclosed closable"
+            patternResource="queries/org/emftext/refactoring/languages/java/smell/android/unclosedClosable.eiq"
+            patternName="org.emftext.language.java.refactoring.smell.android.structureCalculation3">
+      </structureCalculation>
+      <structureCalculation
+            description="An element is too small"
+            patternName="unTouchable"
+            patternResource="queries/org/emftext/refactoring/languages/java/smell/android/untouchable.eiq"
+            smellMessage="This element is too small">
       </structureCalculation>
    </extension>
    <extension
