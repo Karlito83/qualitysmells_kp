@@ -45,11 +45,26 @@ public class SlowForLoopTest {
 	
 	public void three() {
 		List<Foo> test = new LinkedList<Foo>();
-		
-		int len = test.size();
+		int x;
 		
 		for(int i=0;i<=test.size()-1;i++){
 			
 		}
+		
+		//suffix updates
+		for(int i=0;i<test.size();i++){
+			
+		}
+		
+		//prefix updates
+		for(int i=0;i<test.size();++i){
+			
+		}
+		
+		//assignmentinit
+		for(x=0;x<test.size();++x){
+			
+		}
+		
 	}
 }
