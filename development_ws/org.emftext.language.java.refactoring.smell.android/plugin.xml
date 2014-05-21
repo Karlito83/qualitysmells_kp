@@ -75,6 +75,12 @@
       <rolemapping
             rolemapping_resource="rolemappings/UseUniqueGeneratedId.rolemapping">
       </rolemapping>
+      <rolemapping
+            rolemapping_resource="rolemappings/UnclosedClosable.rolemapping">
+      </rolemapping>
+      <rolemapping
+            rolemapping_resource="rolemappings/Untouchable.rolemapping">
+      </rolemapping>
    </extension>
    <extension
          point="org.emftext.refactoring.postprocessor">
@@ -102,6 +108,16 @@
             mapping_name="Use unique generated id for tracking hardware id"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UseUUID"
             nsUri="http://www.emftext.org/java">
+      </postprocessor>
+      <postprocessor
+            mapping_name="Resize Untouchable"
+            nsUri="http://www.emftext.org/java"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.ShowUnTouchable">
+      </postprocessor>
+      <postprocessor
+            mapping_name="Add Close Statement"
+            nsUri="http://www.emftext.org/java"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UnclosedClosable">
       </postprocessor>
    </extension>
 
