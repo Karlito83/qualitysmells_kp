@@ -312,30 +312,136 @@
       </constraints>
     </bodies>
   </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.uncachedView" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.9">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="a"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.8"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.fewCalls" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq">
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.9">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="1"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.9">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="2"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.9">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="3"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.9">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="4"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.9">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.findViewByIdCall" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//MethodCall"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:StringValue" value="findViewById"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
   <importPackages>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/variables#/"/>
-    </packageImport>
-    <packageImport>
       <ePackage href="http://www.emftext.org/java/generics#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/statements#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/types#/"/>
     </packageImport>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/expressions#/"/>
+      <ePackage href="http://www.emftext.org/java/commons#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/classifiers#/"/>
     </packageImport>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/references#/"/>
+      <ePackage href="http://www.emftext.org/java/variables#/"/>
     </packageImport>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/commons#/"/>
+      <ePackage href="http://www.emftext.org/java/statements#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/expressions#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/references#/"/>
     </packageImport>
   </importPackages>
 </eMFPatternLanguage:PatternModel>

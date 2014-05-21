@@ -19,19 +19,19 @@ pattern uncachedView(a){
 //this check.
 pattern fewCalls(){
 	//find findViewByIdCall(a);
-	0 == count find findViewByIdCall(a);
+	0 == count find findViewByIdCall(_a);
 } or {
 	//find findViewByIdCall(a);
-	1 == count find findViewByIdCall(a);
+	1 == count find findViewByIdCall(_a);
 } or {
 	//find findViewByIdCall(a);
-	2 == count find findViewByIdCall(a);
+	2 == count find findViewByIdCall(_a);
 } or {
 	//find findViewByIdCall(a);
-	3 == count find findViewByIdCall(a);
+	3 == count find findViewByIdCall(_a);
 } or {
 	//find findViewByIdCall(a);
-	4 == count find findViewByIdCall(a);
+	4 == count find findViewByIdCall(_a);
 }
 
 pattern findViewByIdCall(a){
