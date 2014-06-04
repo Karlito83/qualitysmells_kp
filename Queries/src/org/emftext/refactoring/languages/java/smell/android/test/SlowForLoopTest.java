@@ -62,7 +62,7 @@ public class SlowForLoopTest {
 		}
 		
 		//assignmentinit
-		for(x=0;x<test.size();++x){
+		for(x=1;x<test.size();++x){
 			
 		}
 		

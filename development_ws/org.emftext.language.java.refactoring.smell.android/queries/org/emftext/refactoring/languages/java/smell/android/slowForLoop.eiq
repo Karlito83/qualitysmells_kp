@@ -13,7 +13,6 @@ import "http://www.emftext.org/java/instantiations";
 import "http://www.emftext.org/java/literals";
 
 
-
 pattern slowForLoop(a : ForLoop){
 	ForLoop(a);
 	ForLoop.condition(a, b);
@@ -22,13 +21,20 @@ pattern slowForLoop(a : ForLoop){
 	find slowForLoopInit(a,_z);
 }
 
+pattern numberTest(a,b){
+	DecimalIntegerLiteral.decimalValue(a,b);
+	check(b.equals(0));
+}
+
 pattern slowForLoopInit(a,r){
 	ForLoop.init(a,b);
 	ForLoopInitializer(b);
 	LocalVariable(b);
 	LocalVariable.initialValue(b,c);
 	DecimalIntegerLiteral.decimalValue(c,r);
-	//DecimalIntegerLiteral.decimalValue(c,0);
+	//check(r.equals(0));
+	check({if (r.toString().equals("0")) true else false});
+	//check({if (r == 0) {true} else {false}});
 } or {
 	ForLoop.init(a,b);
 	ExpressionList(b);
@@ -37,6 +43,8 @@ pattern slowForLoopInit(a,r){
 	Assignment(d);
 	AssignmentExpression.value(c,e);
 	DecimalIntegerLiteral.decimalValue(e,r);
+	check({if (r.toString().equals("0")) true else false});
+	//check({if (r == 0) {true} else {false}});
 	//DecimalIntegerLiteral.decimalValue(c,0);
 }
 
