@@ -27,4 +27,5 @@ Require-Bundle: org.emftext.refactoring.smell.calculation,
  org.emftext.language.java.resource.java,
  org.eclipse.xtext.xbase.lib.source;bundle-version="2.4.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
