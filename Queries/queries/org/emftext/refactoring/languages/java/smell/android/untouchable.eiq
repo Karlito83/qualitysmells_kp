@@ -1,0 +1,69 @@
+package org.emftext.refactoring.languages.^java.smell.android
+
+import "http://www.emftext.org/java/commons"
+import "http://www.emftext.org/java/classifiers"
+import "http://www.emftext.org/java/members"
+import "http://www.emftext.org/java/parameters"
+import "http://www.emftext.org/java/types"
+import "http://www.emftext.org/java/references"
+import "http://www.emftext.org/java/variables"
+import "http://www.emftext.org/java/statements"
+//import "http://www.emftext.org/commons/layout"
+
+pattern UnTouchable(showLPExpression:IdentifierReference){
+	Class.^extends(actualClass, superClassRef);
+	NamespaceClassifierReference.classifierReferences(superClassRef, classifierReference);
+	ClassifierReference.target(classifierReference, superClass);
+	find isActivity(superClass);
+	
+	find sizeFILL(showLPExpression, LPExpression, useRelativeLayout);
+	find sizeWRAP(showLPExpression, LPExpression, useRelativeLayout);
+	find sizeMATCH(showLPExpression, LPExpression, useRelativeLayout);
+	
+	
+	//Class.members(actualClass, method);
+	//find useRelativeLayout(expression);
+	//find parentContainsSomething+(method, expression);
+}
+	
+	private pattern sizeFILL(showLPExpression, LPExpression, useRelativeLayout){
+	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	IdentifierReference.next(useRelativeLayout, LPExpression);
+	IdentifierReference.target.name(LPExpression, "LayoutParams");
+	IdentifierReference.next(LPExpression, showLPExpression);
+	IdentifierReference.target.name(showLPExpression, "FILL_PARENT");}
+	
+		private pattern sizeWRAP(showLPExpression, LPExpression, useRelativeLayout){
+	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	IdentifierReference.next(useRelativeLayout, LPExpression);
+	IdentifierReference.target.name(LPExpression, "LayoutParams");
+	IdentifierReference.next(LPExpression, showLPExpression);
+	IdentifierReference.target.name(showLPExpression, "WRAP_CONTENT");}
+	
+		private pattern sizeMATCH(showLPExpression, LPExpression, useRelativeLayout){
+	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	IdentifierReference.next(useRelativeLayout, LPExpression);
+	IdentifierReference.target.name(LPExpression, "LayoutParams");
+	IdentifierReference.next(LPExpression, showLPExpression);
+	IdentifierReference.target.name(showLPExpression, "MATCH_PARENT");}
+	
+			private pattern size(showLPExpression, LPExpression, useRelativeLayout){
+	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	IdentifierReference.next(useRelativeLayout, LPExpression);
+	IdentifierReference.target.name(LPExpression, "LayoutParams");
+	IdentifierReference.next(LPExpression, showLPExpression);}
+	//DecimalIntegerLiteral.decimalValue(a, b);}
+
+private pattern isActivity(class) {
+	find isClassOf(class, "Activity");
+}
+
+private pattern isClassOf(class, className) {
+	Class.name(class, className);
+}
+
+private pattern parentContainsSomething(parent, child){
+	LocalVariableStatement.variable(parent, child);
+} or {
+	StatementListContainer.statements(parent, child);
+}
