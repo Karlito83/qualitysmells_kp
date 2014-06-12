@@ -5,6 +5,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
 	<classpathentry kind="src" path="queries"/>
-	<classpathentry kind="lib" path="/home/ronny/Android/sdk/platforms/android-19/android.jar"/>
+	<classpathentry kind="lib" path="libs/android.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
