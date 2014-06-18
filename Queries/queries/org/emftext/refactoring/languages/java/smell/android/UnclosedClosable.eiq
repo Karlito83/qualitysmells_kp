@@ -1,0 +1,24 @@
+package org.emftext.refactoring.languages.^java.smell.android
+
+import "http://www.emftext.org/java/commons"
+import "http://www.emftext.org/java/classifiers"
+import "http://www.emftext.org/java/members"
+import "http://www.emftext.org/java/parameters"
+import "http://www.emftext.org/java/types"
+import "http://www.emftext.org/java/references"
+import "http://www.emftext.org/java/variables"
+import "http://www.emftext.org/java/statements"
+
+pattern UnclosedCloseable(deviceIdCall:MethodCall, deviceINCall:Interface) ={
+	find findClose(deviceIdCall);
+	find findCloseable(deviceINCall);
+	}
+
+pattern findClose(deviceIdCall:MethodCall) ={
+	MethodCall.target.name(deviceIdCall, "close");
+	}
+	
+pattern findCloseable(deviceINCall:Interface) ={
+	Interface.name(deviceINCall, "Closeable");
+	}
+
