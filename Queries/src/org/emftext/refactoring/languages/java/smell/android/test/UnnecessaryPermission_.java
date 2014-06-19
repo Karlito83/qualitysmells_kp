@@ -15,15 +15,27 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.R;
- 
+import android.provider.MediaStore;
+import android.net.Uri;
+
 public class UnnecessaryPermission_ extends Activity {
  
-           
+ 
+           		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-
-            
-        
-    }
+ 				
+ 	
+ 		public void sendSMS(View v) {
+ 
+        String _messageNumber= "017612345678";
+        String messageText = "Hi , Just SMSed to say hello";
+ 
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.setData(Uri.parse("sms:"+_messageNumber));
+        sendIntent.putExtra("sms_body", messageText);
+        startActivity(sendIntent);
+    	}
+}
   
 
 

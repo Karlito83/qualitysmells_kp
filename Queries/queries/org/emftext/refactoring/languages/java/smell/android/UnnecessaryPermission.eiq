@@ -8,48 +8,40 @@ import "http://www.emftext.org/java/types"
 import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/variables"
 import "http://www.emftext.org/java/statements"
+import "http://www.emftext.org/java/references";
+import "http://www.emftext.org/java/expressions";
+import "http://www.emftext.org/java/generics";
+import "http://www.emftext.org/java/operators";
+import "http://www.emftext.org/java/instantiations";
+import "http://www.emftext.org/java/literals";
 
-pattern UnTouchable(field2:Field){
+
+
+
+
+
+pattern UnnecessaryPermission(field:Field){
 	Class.^extends(actualClass, superClassRef);
 	NamespaceClassifierReference.classifierReferences(superClassRef, classifierReference);
 	ClassifierReference.target(classifierReference, superClass);
 	find isActivity(superClass);
-	
-	find useCamera(field, field2);} or { find useContact(field, field2); }
-	or {find useSMS(field, field2);}
+	find useSMS(field);} 
+	//or {find useContact(field, field2); }
+	//or {find useSMS(field, field2);}
 	
 	//Class.members(actualClass, method);
 	//find parentContainsSomething+(method, expression);
 //}
 
-private pattern useSMS(field, field2) {
-	 find isField(field, "ACTION_VIEW");
-	 find isField(field2, "EXTRA_TEXT");
-	 }
-	 
-	private pattern useRelativeLayout(expression) {
-	ExpressionStatement.expression(expression, useRelativeLayout);
-	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
-	IdentifierReference.next(useRelativeLayout, LPExpression);
-	IdentifierReference.target.name(LPExpression, "LayoutParams");
+ pattern useSMS(f,x, y) ={
+ 	NewConstructorCall.typeReference(f,g);
+	NamespaceClassifierReference.classifierReferences(g,c);
+	ClassifierReference.target.name(c, "Intent");
+	NewConstructorCall.arguments(f,x);
+	IdentifierReference.next(x,z);
+	IdentifierReference.target.name(z,y);
+	}	
 	
-	}
-	
-	private pattern Last (showLPExpression, LPExpression){
-	IdentifierReference.next(LPExpression, showLPExpression);
-	IdentifierReference.target.name(showLPExpression, "FILL_PARENT");
-	
-	
-}
-private pattern useCamera(field, field2) {
-	 find isField(field, "ACTION_IMAGE_CAPTURE");
-	 find isField(field2, "EXTRA_OUTPUT");
-	 }
-	 
-private pattern useContact(field, field2) {
-	 find isField(field, "ACTION_PICK");
-	 find isField(field2, "PICK_CONTACT_REQUEST");
-	 }
 
 private pattern isActivity(class) {
 	find isClassOf(class, "Activity");
@@ -59,12 +51,3 @@ private pattern isClassOf(class, className) {
 	Class.name(class, className);
 }
 
-private pattern isField(field,fieldName) {
-	Field.name(field, fieldName);
-}
-
-private pattern parentContainsSomething(parent, child){
-	LocalVariableStatement.variable(parent, child);
-} or {
-	StatementListContainer.statements(parent, child);
-}

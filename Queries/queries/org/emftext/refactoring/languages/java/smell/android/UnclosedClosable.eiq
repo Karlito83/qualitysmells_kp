@@ -8,17 +8,32 @@ import "http://www.emftext.org/java/types"
 import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/variables"
 import "http://www.emftext.org/java/statements"
+import "http://www.emftext.org/java/generics"
 
-pattern UnclosedCloseable(deviceIdCall:MethodCall, deviceINCall:Interface) ={
-	find findClose(deviceIdCall);
-	find findCloseable(deviceINCall);
+pattern UnclosedCloseable(a:ExpressionStatement) ={
+	
+	find findCloseable(dev);
+	find findCloseableParam(exp);
+	find findClose(a, t);
+	
 	}
 
-pattern findClose(deviceIdCall:MethodCall) ={
-	MethodCall.target.name(deviceIdCall, "close");
+pattern findClose(a:ExpressionStatement, t) ={
+	ExpressionStatement.expression(a,exp);
+	IdentifierReference.target.name(exp, t);
+	IdentifierReference.next(exp, exp2);
+	MethodCall.target.name(exp2, "close");
 	}
 	
-pattern findCloseable(deviceINCall:Interface) ={
-	Interface.name(deviceINCall, "Closeable");
+pattern findCloseable(dev:NamespaceClassifierReference) ={
+	NamespaceClassifierReference.classifierReferences(dev, a);
+	ClassifierReference.target.name(a, "Closeable");
 	}
 
+	pattern findCloseableParam(t){
+        OrdinaryParameter.typeReference(t,s);
+        NamespaceClassifierReference.classifierReferences(s,r);
+        ClassifierReference.target(r,a);
+        Interface.name(a,"Closeable");
+        find ImplementsOrExtends(a,b);
+}
