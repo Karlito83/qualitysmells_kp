@@ -48,7 +48,7 @@ public class SlowForLoopTest {
 		int x;
 		
 		for(int i=0;i<=test.size()-1;i++){
-			
+			test.get(i);
 		}
 		
 		//suffix updates

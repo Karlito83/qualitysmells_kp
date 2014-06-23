@@ -26,4 +26,11 @@
 		<nature>org.emftext.language.java.resource.java.nature</nature>
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/org/emftext/refactoring/languages/java/smell/android/test/SlowForLoopTest.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Queries/src/org/emftext/refactoring/languages/java/smell/android/test/SlowForLoopTest.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
