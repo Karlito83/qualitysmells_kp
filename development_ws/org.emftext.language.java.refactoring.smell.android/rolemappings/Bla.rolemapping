@@ -1,8 +1,0 @@
-ROLEMODELMAPPING FOR <http://www.emftext.org/java>
-
-/*
-	Transforms the acquire statement (without the use of the timeout parameter) to use the timeout parameter.
-*/
-"Bla Blah!!" maps <SelectX> { 
-	 Selection := java.statements.ForLoop; 
-}
