@@ -1,0 +1,91 @@
+package org.emftext.refactoring.languages.java.smell.android
+
+import "http://www.emftext.org/java/classifiers";
+import "http://www.emftext.org/java/references";
+import "http://www.emftext.org/java/commons";
+import "http://www.emftext.org/java/types";
+import "http://www.emftext.org/java/variables";
+import "http://www.emftext.org/java/expressions";
+import "http://www.emftext.org/java/statements";
+import "http://www.emftext.org/java/generics";
+import "http://www.emftext.org/java/operators";
+import "http://www.emftext.org/java/instantiations";
+import "http://www.emftext.org/java/literals";
+
+//import java ^java.math.BigInteger;
+
+pattern slowForLoop(a : ForLoop){
+	ForLoop(a);
+	ForLoop.condition(a, b);
+	find slowForLoopUpdates(a);
+	find slowForLoopCondition(b);
+	find slowForLoopInit(a,_z);
+}
+
+pattern slowForLoopInit(a,r){
+	ForLoop.init(a,b);
+	ForLoopInitializer(b);
+	LocalVariable(b);
+	LocalVariable.initialValue(b,c);
+	DecimalIntegerLiteral.decimalValue(c,r);
+	//check(r.equals(BigInteger.ZERO));
+} or {
+	ForLoop.init(a,b);
+	ExpressionList(b);
+	ExpressionList.expressions(b,c);
+	AssignmentExpression.assignmentOperator(c,d);
+	Assignment(d);
+	AssignmentExpression.value(c,e);
+	DecimalIntegerLiteral.decimalValue(e,r);
+	//check(r.equals(BigInteger.ZERO));
+}
+
+//TODO: Multiple Updates?
+pattern slowForLoopUpdates(a){
+	ForLoop.updates(a,b);	
+	PrefixUnaryModificationExpression.operator(b,c);
+	PlusPlus(c);
+} or {
+	ForLoop.updates(a,b);	
+	SuffixUnaryModificationExpression.operator(b,c);
+	PlusPlus(c);
+}
+
+pattern slowForLoopCondition(a){
+	ForLoop.condition(_forLoopRef,a);
+	RelationExpression(a);
+	RelationExpression.relationOperators(a,f);
+	LessThan(f);
+	RelationExpression.children(a,b);
+	IdentifierReference(b);
+	IdentifierReference.next(b,_c);
+	
+	IdentifierReference.target(b,d);
+	find iterableVariable(d,_e);
+}
+
+pattern iterableVariable(a,b){
+	Variable(a);
+	Variable.name(a, "test");
+	Variable.typeReference(a, ref);
+	NamespaceClassifierReference.classifierReferences(ref,ref2);
+	ClassifierReference.target(ref2, b);
+	
+	ClassifierReference.target(ref2,actualInterface);
+	find implementorOfIterable(actualInterface);
+	
+}
+
+pattern implementorOfIterable(a){
+	Interface.name(actualInterface, "Iterable");
+	find ImplementsOrExtends+(a,actualInterface);
+}
+
+pattern ImplementsOrExtends(a,b){
+	Interface.^extends(a, classifierRef);
+	ClassifierReference.target(classifierRef, b);
+	//Interface(b);Variable.typeReference(a, typeReference);
+} or {
+	Class.implements(a, classifierRef);
+	ClassifierReference.target(classifierRef, b);
+}

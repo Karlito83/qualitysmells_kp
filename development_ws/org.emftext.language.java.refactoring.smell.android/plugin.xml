@@ -81,6 +81,9 @@
       <rolemapping
             rolemapping_resource="rolemappings/Untouchable.rolemapping">
       </rolemapping>
+      <rolemapping
+            rolemapping_resource="rolemappings/SlowForLoop.rolemapping">
+      </rolemapping>
    </extension>
    <extension
          point="org.emftext.refactoring.postprocessor">
@@ -117,6 +120,11 @@
       <postprocessor
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UnclosedClosable"
             mapping_name="Add Close Statement"
+            nsUri="http://www.emftext.org/java">
+      </postprocessor>
+      <postprocessor
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.ReplaceSlowForLoop"
+            mapping_name="Replace slow for-loop with extended for-loop"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
    </extension>
