@@ -49,7 +49,7 @@
             smellMessage="The object is closable, but the close() method cannot be found."
             description="Unclosed closable"
             patternResource="queries/org/emftext/refactoring/languages/java/smell/android/unclosedClosable.eiq"
-            patternName="org.emftext.language.java.refactoring.smell.android.structureCalculation3">
+            patternName="unnecessaryClosable">
       </structureCalculation>
       <structureCalculation
             smellMessage="This element is too small"
@@ -84,32 +84,35 @@
       <rolemapping
             rolemapping_resource="rolemappings/SlowForLoop.rolemapping">
       </rolemapping>
+      <rolemapping
+            rolemapping_resource="rolemappings/UncachedFindViewById.rolemapping">
+      </rolemapping>
    </extension>
    <extension
          point="org.emftext.refactoring.postprocessor">
       <postprocessor
-            mapping_name="Transform acquire statement to use timeout"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.AcquireWakeLockWithTimeout"
+            mapping_name="Transform acquire statement to use timeout"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            mapping_name="Let activity class override onLowMemory() method"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.OverrideOnLowMemoryResolver"
+            mapping_name="Let activity class override onLowMemory() method"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.RemoveInterrupFromBackground"
             mapping_name="Remove toast statement from background task"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.RemoveInterrupFromBackground"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            mapping_name="Replace exact with inexact AlarmManager"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.SetInexactAlarmManager"
+            mapping_name="Replace exact with inexact AlarmManager"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            mapping_name="Use unique generated id for tracking hardware id"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UseUUID"
+            mapping_name="Use unique generated id for tracking hardware id"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
@@ -125,6 +128,11 @@
       <postprocessor
             mapping_name="Replace slow for loop with extended for loop"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.ReplaceSlowForLoop"
+            nsUri="http://www.emftext.org/java">
+      </postprocessor>
+      <postprocessor
+            mapping_name="Create FindViewById Cache"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.CreateFindViewByIdCache"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
    </extension>

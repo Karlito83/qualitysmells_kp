@@ -1,0 +1,5 @@
+ROLEMODELMAPPING FOR <http://www.emftext.org/java>
+
+"Create FindViewById Cache" maps <SelectX> { 
+	 Selection := java.references.MethodCall;
+}
