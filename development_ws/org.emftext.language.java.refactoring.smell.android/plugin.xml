@@ -88,43 +88,43 @@
    <extension
          point="org.emftext.refactoring.postprocessor">
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.AcquireWakeLockWithTimeout"
             mapping_name="Transform acquire statement to use timeout"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.AcquireWakeLockWithTimeout"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.OverrideOnLowMemoryResolver"
             mapping_name="Let activity class override onLowMemory() method"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.OverrideOnLowMemoryResolver"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            mapping_name="Remove toast statement from background task"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.RemoveInterrupFromBackground"
+            mapping_name="Remove toast statement from background task"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.SetInexactAlarmManager"
             mapping_name="Replace exact with inexact AlarmManager"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.SetInexactAlarmManager"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UseUUID"
             mapping_name="Use unique generated id for tracking hardware id"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UseUUID"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.ShowUnTouchable"
             mapping_name="Resize Untouchable"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.ShowUnTouchable"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
-            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UnclosedClosable"
             mapping_name="Add Close Statement"
+            postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.UnclosedClosable"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
       <postprocessor
+            mapping_name="Replace slow for loop with extended for loop"
             postprocessor="org.emftext.refactoring.languages.java.smell.android.refactorings.ReplaceSlowForLoop"
-            mapping_name="Replace slow for-loop with extended for-loop"
             nsUri="http://www.emftext.org/java">
       </postprocessor>
    </extension>
