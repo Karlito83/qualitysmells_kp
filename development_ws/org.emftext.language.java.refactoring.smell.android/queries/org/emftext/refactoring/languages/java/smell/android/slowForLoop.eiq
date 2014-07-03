@@ -1,4 +1,4 @@
-package org.emftext.refactoring.languages.java.smell.android
+package org.emftext.refactoring.languages.^java.smell.android
 
 import "http://www.emftext.org/java/classifiers";
 import "http://www.emftext.org/java/references";
@@ -12,7 +12,7 @@ import "http://www.emftext.org/java/operators";
 import "http://www.emftext.org/java/instantiations";
 import "http://www.emftext.org/java/literals";
 
-//import java ^java.math.BigInteger;
+import java ^java.math.BigInteger;
 
 pattern slowForLoop(a : ForLoop){
 	ForLoop(a);
@@ -28,7 +28,7 @@ pattern slowForLoopInit(a,r){
 	LocalVariable(b);
 	LocalVariable.initialValue(b,c);
 	DecimalIntegerLiteral.decimalValue(c,r);
-	//check(r.equals(BigInteger.ZERO));
+	check(r.equals(BigInteger.ZERO));
 } or {
 	ForLoop.init(a,b);
 	ExpressionList(b);
@@ -37,7 +37,7 @@ pattern slowForLoopInit(a,r){
 	Assignment(d);
 	AssignmentExpression.value(c,e);
 	DecimalIntegerLiteral.decimalValue(e,r);
-	//check(r.equals(BigInteger.ZERO));
+	check(r.equals(BigInteger.ZERO));
 }
 
 //TODO: Multiple Updates?
