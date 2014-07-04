@@ -37,11 +37,13 @@ import org.emftext.language.java.expressions.impl.ExpressionsFactoryImpl;
 import org.emftext.language.java.references.Reference;
 import org.emftext.language.java.resource.java.IJavaOptions;
 import org.emftext.language.java.statements.ExpressionStatement;
+import org.emftext.language.java.statements.ForEachLoop;
 import org.emftext.language.java.statements.ForLoopInitializer;
 import org.emftext.language.java.statements.LocalVariableStatement;
 import org.emftext.language.java.statements.Statement;
 import org.emftext.language.java.statements.StatementsFactory;
 import org.emftext.language.java.statements.impl.ExpressionStatementImpl;
+import org.emftext.language.java.statements.impl.ForEachLoopImpl;
 import org.emftext.language.java.statements.impl.ForLoopImpl;
 import org.emftext.language.java.statements.impl.StatementsFactoryImpl;
 import org.emftext.language.java.types.ClassifierReference;
@@ -78,6 +80,7 @@ public class ReplaceSlowForLoop extends
 				ExpressionsPackage.Literals.ASSIGNMENT_EXPRESSION, 
 				AssignmentExpression.class).get(0);*/
 		
+		/*
 		StatementsFactory sf = new StatementsFactoryImpl();
 		
 		LocalVariableStatement lvs = sf.createLocalVariableStatement();
@@ -86,14 +89,26 @@ public class ReplaceSlowForLoop extends
 		//lv.setInitialValue();
 		lvs.setVariable(lv);
 		//lv.setInitialValue(new DecimalIn);
+		 */
 	
-		fi.addBeforeContainingStatement(lvs);
+		fi.addBeforeContainingStatement(createExtendedForLoop(fi.getStatement()));
 		
 		return Status.OK_STATUS;
 		
 		/*return super.process(roleBindings, refactoredModel, resourceSet, change,
 				refSpec, customWizardPages, isFakeRun, copier);
 				*/
+	}
+	
+	private ForEachLoop createExtendedForLoop(Statement statement){
+		ForEachLoop result = null; 
+		StatementsFactoryImpl statementsFactory = new StatementsFactoryImpl();
+		
+		
+		result = statementsFactory.createForEachLoop();
+		result.setStatement(statement);
+		
+		return result;
 	}
 	
 	/**
