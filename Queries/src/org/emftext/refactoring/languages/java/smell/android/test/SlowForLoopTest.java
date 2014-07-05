@@ -53,6 +53,9 @@ public class SlowForLoopTest {
 		
 		//suffix updates
 		for(int i=0;i<test.size();i++){
+			test.get(i);
+			
+			//Sensible code...
 			
 		}
 		
