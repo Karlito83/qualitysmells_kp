@@ -2,6 +2,7 @@ package org.emftext.refactoring.languages.java.smell.android.refactorings;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,16 +26,24 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.emftext.commons.layout.LayoutInformation;
+import org.emftext.language.java.annotations.AnnotationAttribute;
 import org.emftext.language.java.annotations.AnnotationInstance;
 import org.emftext.language.java.classifiers.AnonymousClass;
 import org.emftext.language.java.classifiers.ConcreteClassifier;
 import org.emftext.language.java.classifiers.Interface;
 import org.emftext.language.java.containers.CompilationUnit;
+import org.emftext.language.java.expressions.AdditiveExpression;
 import org.emftext.language.java.expressions.AssignmentExpression;
 import org.emftext.language.java.expressions.Expression;
 import org.emftext.language.java.expressions.ExpressionsPackage;
+import org.emftext.language.java.expressions.RelationExpression;
+import org.emftext.language.java.expressions.RelationExpressionChild;
 import org.emftext.language.java.expressions.impl.ExpressionsFactoryImpl;
+import org.emftext.language.java.members.Field;
+import org.emftext.language.java.references.IdentifierReference;
 import org.emftext.language.java.references.Reference;
+import org.emftext.language.java.references.ReferenceableElement;
+import org.emftext.language.java.references.impl.IdentifierReferenceImpl;
 import org.emftext.language.java.resource.java.IJavaOptions;
 import org.emftext.language.java.statements.ExpressionStatement;
 import org.emftext.language.java.statements.ForEachLoop;
@@ -74,24 +83,12 @@ public class ReplaceSlowForLoop extends
 		
 		ForLoopImpl fi = RoleUtil.getFirstObjectForRole(
 				"Selection", ForLoopImpl.class, roleBindings);
-		
-		/*AssignmentExpression e = parsePartialFragment(
-				this.PART_TEST, 
-				ExpressionsPackage.Literals.ASSIGNMENT_EXPRESSION, 
-				AssignmentExpression.class).get(0);*/
-		
-		/*
-		StatementsFactory sf = new StatementsFactoryImpl();
-		
-		LocalVariableStatement lvs = sf.createLocalVariableStatement();
-		LocalVariable lv = new VariablesFactoryImpl().createLocalVariable();
-		lv.setName("klaus");
-		//lv.setInitialValue();
-		lvs.setVariable(lv);
-		//lv.setInitialValue(new DecimalIn);
-		 */
 	
-		fi.addBeforeContainingStatement(createExtendedForLoop(fi.getStatement()));
+		Variable indexVariable = getIndexVariable(fi.getInit());
+		Variable iterableVariable = getIterableVariable(indexVariable, (RelationExpression)fi.getCondition());
+		ForEachLoop extendedLoop = createExtendedForLoop(fi.getStatement());
+	
+		fi.addBeforeContainingStatement(extendedLoop);
 		
 		return Status.OK_STATUS;
 		
@@ -100,6 +97,34 @@ public class ReplaceSlowForLoop extends
 				*/
 	}
 	
+	private Variable getIterableVariable(Variable indexVariable, RelationExpression condition){
+		Variable result = null;
+		
+		for(RelationExpressionChild relationExpressionChild : condition.getChildren()){
+			if (relationExpressionChild instanceof IdentifierReference){
+				IdentifierReference ref = (IdentifierReference)relationExpressionChild;
+				EObject identifierReferenceTarget = ref.eContainer();
+				if (identifierReferenceTarget instanceof LocalVariable 
+						|| identifierReferenceTarget instanceof Field){
+					result = (Variable)identifierReferenceTarget;
+				}
+			}
+			if (relationExpressionChild instanceof AdditiveExpression){
+				//relationExpressionChild
+				throw new RuntimeException("AdditiveExpressions in the for loop "
+						+ "condition are not yet supported.");
+			}
+		}
+		
+		return result;
+	}
+	
+	private LocalVariable getIndexVariable(ForLoopInitializer init) {
+		LocalVariable result = (LocalVariable)init;
+		
+		return result;
+	}
+
 	private ForEachLoop createExtendedForLoop(Statement statement){
 		ForEachLoop result = null; 
 		StatementsFactoryImpl statementsFactory = new StatementsFactoryImpl();
