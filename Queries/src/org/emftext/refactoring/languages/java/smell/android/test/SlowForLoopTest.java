@@ -11,6 +11,7 @@ public class SlowForLoopTest {
 	};
 
 	Foo[] mArray = new Foo[20];
+	private LinkedList<String> classVariable;
 
 	public static void main(String[] args) {
 		SlowForLoopTest oSlowForLoop = new SlowForLoopTest();
@@ -51,23 +52,37 @@ public class SlowForLoopTest {
 			test.get(i);
 		}
 		
+		for (x=0;x<test.size();x++){
+			test.get(x);
+		}
+		
 		//suffix updates
 		for(int i=0;i<test.size();i++){
-			test.get(i);
-			
-			//Sensible code...
-			
+			System.out.println(test.get(i));
 		}
 		
 		//prefix updates
 		for(int i=0;i<test.size();++i){
-			
+			System.out.println(test.get(i));
 		}
 		
 		//assignmentinit
-		for(x=1;x<test.size();++x){
-			
+		for(x=0;x<test.size();++x){
+			System.out.println(test.get(x));
 		}
 		
+	}
+	
+	public void four(){
+		for(int y = 0; y<classVariable.size();y++)
+			System.out.println(classVariable.get(y));
+	}
+	
+	public void target(){
+		List<Foo> test = new LinkedList<Foo>();
+		
+		for (Foo element : test){
+			System.out.println(element);
+		}
 	}
 }
