@@ -66,7 +66,7 @@ pattern slowForLoopCondition(a){
 
 pattern iterableVariable(a,b){
 	Variable(a);
-	Variable.name(a, "test");
+	//Variable.name(a, "test");
 	Variable.typeReference(a, ref);
 	NamespaceClassifierReference.classifierReferences(ref,ref2);
 	ClassifierReference.target(ref2, b);
