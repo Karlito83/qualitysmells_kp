@@ -13,9 +13,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.BasicNotifierImpl.EAdapterList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -34,7 +36,9 @@ import org.emftext.language.java.classifiers.Interface;
 import org.emftext.language.java.containers.CompilationUnit;
 import org.emftext.language.java.expressions.AdditiveExpression;
 import org.emftext.language.java.expressions.AssignmentExpression;
+import org.emftext.language.java.expressions.AssignmentExpressionChild;
 import org.emftext.language.java.expressions.Expression;
+import org.emftext.language.java.expressions.ExpressionList;
 import org.emftext.language.java.expressions.ExpressionsPackage;
 import org.emftext.language.java.expressions.RelationExpression;
 import org.emftext.language.java.expressions.RelationExpressionChild;
@@ -103,11 +107,8 @@ public class ReplaceSlowForLoop extends
 		for(RelationExpressionChild relationExpressionChild : condition.getChildren()){
 			if (relationExpressionChild instanceof IdentifierReference){
 				IdentifierReference ref = (IdentifierReference)relationExpressionChild;
-				EObject identifierReferenceTarget = ref.eContainer();
-				if (identifierReferenceTarget instanceof LocalVariable 
-						|| identifierReferenceTarget instanceof Field){
-					result = (Variable)identifierReferenceTarget;
-				}
+				test(ref);
+				
 			}
 			if (relationExpressionChild instanceof AdditiveExpression){
 				//relationExpressionChild
@@ -119,8 +120,62 @@ public class ReplaceSlowForLoop extends
 		return result;
 	}
 	
+	private void test(IdentifierReference ref){
+		System.out.println(ref.eClass().getEAllAttributes().size());
+		System.out.println(ref.eClass().getEAllContainments().size());
+		System.out.println(ref.eClass().getName());
+		System.out.println(ref.getContainingConcreteClassifier());
+		System.out.println(ref.getTarget().eClass().getName());
+		
+		System.out.println(ref.getTarget().eClass().getEAllContainments().size());
+		
+		AnnotationAttribute att = (AnnotationAttribute) ref.getTarget();
+		
+		System.out.println(att.getDefaultValue());
+		System.out.println(att.getName());
+		System.out.println(att.getTypeReference());
+		System.out.println(att.getTypeParameters().size());
+		System.out.println(att.eClass().getName());
+		
+		LocalVariable dings = (LocalVariable)att;
+		
+		System.out.println(dings.getTypeReference());
+		
+		for (EReference r : ref.getTarget().eClass().getEAllContainments()){
+			System.out.println(r.getName());
+		}
+		
+		for (EReference r : ref.eClass().getEAllContainments()){
+			System.out.println(r.getName());
+		}
+		System.out.println(ref.eClass().getEAttributes().size());
+		
+	}
+	
 	private LocalVariable getIndexVariable(ForLoopInitializer init) {
-		LocalVariable result = (LocalVariable)init;
+		LocalVariable result = null;
+		
+		if(init instanceof LocalVariable){
+			result = (LocalVariable)init;
+		}
+		if(init instanceof AssignmentExpression){
+			AssignmentExpression assignmentExpression = (AssignmentExpression)init;
+			AssignmentExpressionChild child = assignmentExpression.getChild();
+			System.out.println(child.getType());
+			System.out.println(child.eClass().getName());
+		}
+		if(init instanceof ExpressionList){
+			ExpressionList expressionList = (ExpressionList)init;
+			
+			AssignmentExpression assignmentExpression = 
+					(AssignmentExpression)expressionList.getExpressions().get(0);
+			System.out.println(assignmentExpression.getChild().eClass().getName());
+			IdentifierReference ref = (IdentifierReference)assignmentExpression.getChild();
+			EStructuralFeature feature = ref.eClass().getEStructuralFeature("target");
+			Object test = ref.eGet(feature);
+			System.out.println(test);
+		}
+		
 		
 		return result;
 	}
