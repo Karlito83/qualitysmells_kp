@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class UncachedViewTest extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
 		findViewById(TRIM_MEMORY_UI_HIDDEN);
 		findViewById(TRIM_MEMORY_UI_HIDDEN);
 		
+		this.findViewById(TRIM_MEMORY_UI_HIDDEN);
 	}
 
 	@Override
