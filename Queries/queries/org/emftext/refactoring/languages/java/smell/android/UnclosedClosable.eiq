@@ -9,16 +9,35 @@ import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/variables"
 import "http://www.emftext.org/java/statements"
 import "http://www.emftext.org/java/generics"
+import "http://www.emftext.org/java/arrays"
 
-pattern UnclosedCloseable(a:ExpressionStatement) ={
+pattern UnclosedCloseable(c:ClassMethod, t:OrdinaryParameter) ={
 	
-	find findCloseable(dev);
-	find findCloseableParam(exp);
-	find findClose(a, t);
+	neg find findClassParam(s);
+	OrdinaryParameter.name(t,s);
+	find findClass(c,t);
+	
+	
 	
 	}
 
-pattern findClose(a:ExpressionStatement, t) ={
+pattern findClassParam(s) ={
+	find findClose(s);
+	ClassMethod.name(c,r);
+	ClassMethod.parameters(c,t);
+	ClassMethod.statements(c,h);
+
+
+	}
+	
+pattern findClass(c,t) ={
+	ClassMethod.name(c,r);
+	ClassMethod.parameters(c,t);
+	ClassMethod.statements(c,h);
+	}
+
+
+pattern findClose(t) ={
 	ExpressionStatement.expression(a,exp);
 	IdentifierReference.target.name(exp, t);
 	IdentifierReference.next(exp, exp2);

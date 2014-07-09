@@ -1,0 +1,1696 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eMFPatternLanguage:PatternModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eMFPatternLanguage="http://www.eclipse.org/incquery/patternlanguage/emf/EMFPatternLanguage" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:patternLanguage="http://www.eclipse.org/incquery/patternlanguage/PatternLanguage">
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.UnnecessaryPermission" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <parameters name="field2">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//Field"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/classifiers#//Class/extends"/>
+            </type>
+          </tail>
+          <src var="actualClass"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="superClassRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//NamespaceClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//NamespaceClassifierReference/classifierReferences"/>
+            </type>
+          </tail>
+          <src var="superClassRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="classifierReference"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="classifierReference"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="superClass"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.6">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="superClass"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.4">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field2"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field2"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.1">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field2"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.useSMS" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="field"/>
+    <parameters name="field2"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.8">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="ACTION_VIEW"/>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.8">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field2"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="EXTRA_TEXT"/>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.useRelativeLayout" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="expression"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="expression"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="useRelativeLayout"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:StringValue" value="RelativeLayout"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="LayoutParams"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.Last" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="showLPExpression"/>
+    <parameters name="LPExpression"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="showLPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="FILL_PARENT"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.useCamera" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="field"/>
+    <parameters name="field2"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.8">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="ACTION_IMAGE_CAPTURE"/>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.8">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field2"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="EXTRA_OUTPUT"/>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.useContact" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="field"/>
+    <parameters name="field2"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.8">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="ACTION_PICK"/>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.8">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="field2"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="PICK_CONTACT_REQUEST"/>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.isActivity" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="class"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.7">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="class"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:StringValue" value="Activity"/>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.isClassOf" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="class"/>
+    <parameters name="className"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="class"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="className"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.isField" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="field"/>
+    <parameters name="fieldName"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//Field"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="field"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="fieldName"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.parentContainsSomething" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnnecessaryPermission.eiq">
+    <modifiers private="true"/>
+    <parameters name="parent"/>
+    <parameters name="child"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//LocalVariableStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//LocalVariableStatement/variable"/>
+            </type>
+          </tail>
+          <src var="parent"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//StatementListContainer"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="parent"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.UnTouchable" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/untouchable.eiq">
+    <parameters name="showLPExpression">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/classifiers#//Class/extends"/>
+            </type>
+          </tail>
+          <src var="actualClass"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="superClassRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//NamespaceClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//NamespaceClassifierReference/classifierReferences"/>
+            </type>
+          </tail>
+          <src var="superClassRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="classifierReference"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="classifierReference"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="superClass"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.6">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="superClass"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.11">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="useRelativeLayout"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.12">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="useRelativeLayout"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.13">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="useRelativeLayout"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.sizeFILL" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/untouchable.eiq">
+    <modifiers private="true"/>
+    <parameters name="showLPExpression"/>
+    <parameters name="LPExpression"/>
+    <parameters name="useRelativeLayout"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:StringValue" value="RelativeLayout"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="LayoutParams"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="showLPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="FILL_PARENT"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.sizeWRAP" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/untouchable.eiq">
+    <modifiers private="true"/>
+    <parameters name="showLPExpression"/>
+    <parameters name="LPExpression"/>
+    <parameters name="useRelativeLayout"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:StringValue" value="RelativeLayout"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="LayoutParams"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="showLPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="WRAP_CONTENT"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.sizeMATCH" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/untouchable.eiq">
+    <modifiers private="true"/>
+    <parameters name="showLPExpression"/>
+    <parameters name="LPExpression"/>
+    <parameters name="useRelativeLayout"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:StringValue" value="RelativeLayout"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="LayoutParams"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="showLPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="MATCH_PARENT"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.size" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/untouchable.eiq">
+    <modifiers private="true"/>
+    <parameters name="showLPExpression"/>
+    <parameters name="LPExpression"/>
+    <parameters name="useRelativeLayout"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:StringValue" value="RelativeLayout"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="useRelativeLayout"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="LPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:StringValue" value="LayoutParams"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="LPExpression"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="showLPExpression"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.slowForLoop" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+        </type>
+        <var var="a"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//Conditional/condition"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.17">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="a"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.18">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.16">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="a"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_z"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.slowForLoopInit" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a"/>
+    <parameters name="r"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ForLoop/init"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoopInitializer"/>
+        </type>
+        <var var="b"/>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/variables#//LocalVariable"/>
+        </type>
+        <var var="b"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/variables#//LocalVariable"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/instantiations#//Initializable/initialValue"/>
+            </type>
+          </tail>
+          <src var="b"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/literals#//DecimalIntegerLiteral"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/literals#//DecimalIntegerLiteral/decimalValue"/>
+            </type>
+          </tail>
+          <src var="c"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="r"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ForLoop/init"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//ExpressionList"/>
+        </type>
+        <var var="b"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//ExpressionList"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//ExpressionList/expressions"/>
+            </type>
+          </tail>
+          <src var="b"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//AssignmentExpression"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//AssignmentExpression/assignmentOperator"/>
+            </type>
+          </tail>
+          <src var="c"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="d"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/operators#//Assignment"/>
+        </type>
+        <var var="d"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//AssignmentExpression"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//AssignmentExpression/value"/>
+            </type>
+          </tail>
+          <src var="c"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="e"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/literals#//DecimalIntegerLiteral"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/literals#//DecimalIntegerLiteral/decimalValue"/>
+            </type>
+          </tail>
+          <src var="e"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="r"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.slowForLoopUpdates" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ForLoop/updates"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//PrefixUnaryModificationExpression"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//UnaryModificationExpression/operator"/>
+            </type>
+          </tail>
+          <src var="b"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/operators#//PlusPlus"/>
+        </type>
+        <var var="c"/>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ForLoop/updates"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//SuffixUnaryModificationExpression"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//UnaryModificationExpression/operator"/>
+            </type>
+          </tail>
+          <src var="b"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/operators#//PlusPlus"/>
+        </type>
+        <var var="c"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.slowForLoopCondition" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ForLoop"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//Conditional/condition"/>
+            </type>
+          </tail>
+          <src var="_forLoopRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="a"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//RelationExpression"/>
+        </type>
+        <var var="a"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//RelationExpression"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//RelationExpression/relationOperators"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="f"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/operators#//LessThan"/>
+        </type>
+        <var var="f"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//RelationExpression"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/expressions#//RelationExpression/children"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+        </type>
+        <var var="b"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="b"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="_c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+          </tail>
+          <src var="b"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="d"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.19">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="d"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_e"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.iterableVariable" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a"/>
+    <parameters name="b"/>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/variables#//Variable"/>
+        </type>
+        <var var="a"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/variables#//Variable"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:StringValue" value="test"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/variables#//Variable"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//TypedElement/typeReference"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="ref"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//NamespaceClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//NamespaceClassifierReference/classifierReferences"/>
+            </type>
+          </tail>
+          <src var="ref"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="ref2"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="ref2"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="ref2"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="actualInterface"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.20">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="actualInterface"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.implementorOfIterable" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Interface"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="actualInterface"/>
+          <dst xsi:type="patternLanguage:StringValue" value="Iterable"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.21" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="a"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="actualInterface"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.ImplementsOrExtends" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/slowForLoop.eiq">
+    <parameters name="a"/>
+    <parameters name="b"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Interface"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/classifiers#//Interface/extends"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="classifierRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="classifierRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/classifiers#//Implementor/implements"/>
+            </type>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="classifierRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="classifierRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="b"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.uncachedView" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.24">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="a"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.23"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.fewCalls" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq">
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.24">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="1"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.24">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="2"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.24">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="3"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.24">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:IntValue" value="4"/>
+        <rightOperand xsi:type="patternLanguage:AggregatedValue">
+          <aggregator xsi:type="patternLanguage:CountAggregator"/>
+          <call patternRef="//@patterns.24">
+            <parameters xsi:type="patternLanguage:VariableValue">
+              <value var="_a"/>
+            </parameters>
+          </call>
+        </rightOperand>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.findViewByIdCall" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/uncachedFindViewById.eiq">
+    <parameters name="a"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//MethodCall"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="a"/>
+          <dst xsi:type="patternLanguage:StringValue" value="findViewById"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.UnclosedCloseable" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnclosedClosable.eiq">
+    <parameters name="deviceIdCall">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//MethodCall"/>
+      </type>
+    </parameters>
+    <parameters name="deviceINCall">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Interface"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.26">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="deviceIdCall"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.27">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="deviceINCall"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.findClose" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnclosedClosable.eiq">
+    <parameters name="deviceIdCall">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//MethodCall"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//MethodCall"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="deviceIdCall"/>
+          <dst xsi:type="patternLanguage:StringValue" value="close"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="org.emftext.refactoring.languages.java.smell.android.findCloseable" fileName="platform:/resource/Queries/queries/org/emftext/refactoring/languages/java/smell/android/UnclosedClosable.eiq">
+    <parameters name="deviceINCall">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Interface"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Interface"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="deviceINCall"/>
+          <dst xsi:type="patternLanguage:StringValue" value="Closeable"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <importPackages>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/parameters#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/members#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/expressions#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/types#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/generics#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/commons#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/classifiers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/variables#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/literals#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/references#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/instantiations#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/statements#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/operators#/"/>
+    </packageImport>
+  </importPackages>
+</eMFPatternLanguage:PatternModel>

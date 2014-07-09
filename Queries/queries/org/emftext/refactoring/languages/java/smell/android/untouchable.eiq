@@ -11,8 +11,10 @@ import "http://www.emftext.org/java/generics";
 import "http://www.emftext.org/java/operators";
 import "http://www.emftext.org/java/instantiations";
 import "http://www.emftext.org/java/literals";
+import java ^java.lang.Math;
 
-pattern UnTouchable(y){
+
+pattern UnTouchable(f:NewConstructorCall){
 	Class.^extends(actualClass, superClassRef);
 	NamespaceClassifierReference.classifierReferences(superClassRef, classifierReference);
 	ClassifierReference.target(classifierReference, superClass);
@@ -31,6 +33,9 @@ pattern UnTouchable(y){
 	ClassifierReference.target.name(c, "LayoutParams");
 	NewConstructorCall.arguments(f,x);
 	DecimalIntegerLiteral.decimalValue(x,y);
+
+
+	//check(y<48);
 	}	
 	
 private pattern isActivity(class) {
@@ -42,23 +47,23 @@ private pattern isClassOf(class, className) {
 }
 
 	//Optional Pattern to show elements to control the size
-		private pattern sizeFILL(showLPExpression, LPExpression, useRelativeLayout){
-	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
-	IdentifierReference.next(useRelativeLayout, LPExpression);
+		private pattern sizeFILL(showLPExpression, LPExpression){
+	//IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	//IdentifierReference.next(useRelativeLayout, LPExpression);
 	IdentifierReference.target.name(LPExpression, "LayoutParams");
 	IdentifierReference.next(LPExpression, showLPExpression);
 	IdentifierReference.target.name(showLPExpression, "FILL_PARENT");}
 	
-		private pattern sizeWRAP(showLPExpression, LPExpression, useRelativeLayout){
-	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
-	IdentifierReference.next(useRelativeLayout, LPExpression);
+		private pattern sizeWRAP(showLPExpression, LPExpression){
+	//IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	//IdentifierReference.next(useRelativeLayout, LPExpression);
 	IdentifierReference.target.name(LPExpression, "LayoutParams");
 	IdentifierReference.next(LPExpression, showLPExpression);
 	IdentifierReference.target.name(showLPExpression, "WRAP_CONTENT");}
 	
-		private pattern sizeMATCH(showLPExpression, LPExpression, useRelativeLayout){
-	IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
-	IdentifierReference.next(useRelativeLayout, LPExpression);
+		private pattern sizeMATCH(showLPExpression, LPExpression){
+	//IdentifierReference.target.name(useRelativeLayout, "RelativeLayout");
+	//IdentifierReference.next(useRelativeLayout, LPExpression);
 	IdentifierReference.target.name(LPExpression, "LayoutParams");
 	IdentifierReference.next(LPExpression, showLPExpression);
 	IdentifierReference.target.name(showLPExpression, "MATCH_PARENT");}

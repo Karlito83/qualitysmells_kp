@@ -20,12 +20,12 @@ import "http://www.emftext.org/java/literals";
 
 
 
-pattern UnnecessaryPermission(y){
+pattern UnnecessaryPermission(z:IdentifierReference){
 	Class.^extends(actualClass, superClassRef);
 	NamespaceClassifierReference.classifierReferences(superClassRef, classifierReference);
 	ClassifierReference.target(classifierReference, superClass);
 	find isActivity(superClass);
-	find useSMS(y);} 
+	find useIntent(y,z);} 
 	//or {find useContact(field, field2); }
 	//or {find useSMS(field, field2);}
 	
@@ -33,7 +33,7 @@ pattern UnnecessaryPermission(y){
 	//find parentContainsSomething+(method, expression);
 //}
 
- pattern useSMS(y) ={
+ pattern useIntent(y,z) ={
  	NewConstructorCall.typeReference(f,g);
 	NamespaceClassifierReference.classifierReferences(g,c);
 	ClassifierReference.target.name(c, "Intent");
