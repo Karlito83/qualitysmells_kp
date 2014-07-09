@@ -12,7 +12,7 @@ import "http://www.emftext.org/java/operators";
 import "http://www.emftext.org/java/instantiations";
 import "http://www.emftext.org/java/literals";
 
-
+import java ^java.math.BigInteger;
 
 pattern slowForLoop(a : ForLoop){
 	ForLoop(a);
@@ -28,7 +28,7 @@ pattern slowForLoopInit(a,r){
 	LocalVariable(b);
 	LocalVariable.initialValue(b,c);
 	DecimalIntegerLiteral.decimalValue(c,r);
-	//DecimalIntegerLiteral.decimalValue(c,0);
+	check(r.equals(BigInteger.ZERO));
 } or {
 	ForLoop.init(a,b);
 	ExpressionList(b);
@@ -37,7 +37,7 @@ pattern slowForLoopInit(a,r){
 	Assignment(d);
 	AssignmentExpression.value(c,e);
 	DecimalIntegerLiteral.decimalValue(e,r);
-	//DecimalIntegerLiteral.decimalValue(c,0);
+	check(r.equals(BigInteger.ZERO));
 }
 
 //TODO: Multiple Updates?
@@ -66,7 +66,7 @@ pattern slowForLoopCondition(a){
 
 pattern iterableVariable(a,b){
 	Variable(a);
-	Variable.name(a, "test");
+	//Variable.name(a, "test");
 	Variable.typeReference(a, ref);
 	NamespaceClassifierReference.classifierReferences(ref,ref2);
 	ClassifierReference.target(ref2, b);

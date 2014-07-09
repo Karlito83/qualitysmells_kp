@@ -6,6 +6,11 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
+			<name>org.eclipse.incquery.tooling.core.projectbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
 			<arguments>
 			</arguments>
@@ -25,5 +30,13 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.emftext.language.java.resource.java.nature</nature>
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+		<nature>org.eclipse.incquery.projectnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/org/emftext/refactoring/languages/java/smell/android/test/SlowForLoopTest.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Queries/src/org/emftext/refactoring/languages/java/smell/android/test/SlowForLoopTest.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
