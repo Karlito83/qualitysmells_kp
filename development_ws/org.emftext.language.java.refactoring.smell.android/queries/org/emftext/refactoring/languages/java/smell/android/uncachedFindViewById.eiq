@@ -9,31 +9,14 @@ import "http://www.emftext.org/java/expressions";
 import "http://www.emftext.org/java/statements";
 import "http://www.emftext.org/java/generics"
 
-pattern uncachedView(a : MethodCall){
-	find findViewByIdCall(a);
-	neg find fewCalls();
-}
-
-//Due to gt and lt relations do not exist (yet) in IncQuery
-//Check that there are at least 5 occurances is done by negating
-//this check.
-pattern fewCalls(){
-	//find findViewByIdCall(a);
-	0 == count find findViewByIdCall(_a);
-} or {
-	//find findViewByIdCall(a);
-	1 == count find findViewByIdCall(_a);
-} or {
-	//find findViewByIdCall(a);
-	2 == count find findViewByIdCall(_a);
-} or {
-	//find findViewByIdCall(a);
-	3 == count find findViewByIdCall(_a);
-} or {
-	//find findViewByIdCall(a);
-	4 == count find findViewByIdCall(_a);
-}
-
-pattern findViewByIdCall(a){
+pattern uncachedView(a : Expression){
 	MethodCall.target.name(a, "findViewById");
+	neg find selfReference(a);
+} or {
+	SelfReference.next(a,b);
+	MethodCall.target.name(b, "findViewById");
+}
+
+pattern selfReference(a){
+	SelfReference.next(_b,a);
 }
