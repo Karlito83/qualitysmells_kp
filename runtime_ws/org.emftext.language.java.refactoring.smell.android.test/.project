@@ -38,5 +38,10 @@
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Queries/src/org/emftext/refactoring/languages/java/smell/android/test/SlowForLoopTest.java</locationURI>
 		</link>
+		<link>
+			<name>src/org/emftext/refactoring/languages/java/smell/android/test/UncachedViewTest.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Queries/src/org/emftext/refactoring/languages/java/smell/android/test/UncachedViewTest.java</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>
