@@ -3,8 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Test
 Bundle-SymbolicName: Queries;singleton:=true
 Bundle-Version: 0.0.1.qualifier
-Export-Package: org.emftext.refactoring.languages.java.smell.android,
- org.emftext.refactoring.languages.java.smell.android.util
+Export-Package: org.emftext.refactoring.languages.java.smell.android
 Require-Bundle: org.emftext.language.java,
  org.eclipse.emf.ecore,
  org.eclipse.emf.transaction,
