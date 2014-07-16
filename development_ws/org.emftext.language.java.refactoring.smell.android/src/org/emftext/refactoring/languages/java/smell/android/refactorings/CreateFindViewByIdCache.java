@@ -35,14 +35,7 @@ import org.emftext.refactoring.util.RoleUtil;
 
 public class CreateFindViewByIdCache extends AbstractRefactoringPostProcessor {
 
-	private static final String NESTED_CACHE_CLASS = "\tprivate static class "
-			+ "FindViewCache{\n\t\tprivate static SparseArray<View> cache ="
-			+ "  new SparseArray<View>();\n\t\t\n\t\tpublic static View "
-			+ "getCachedView(Activity activity, int viewID){\n\t\t\tView "
-			+ "result = cache.get(viewID);\n\t\t\t\n\t\t\tif(result==null)"
-			+ "{\n\t\t\t\tresult = activity.findViewById(viewID);\n\t\t\t"
-			+ "\tcache.put(viewID, result);\n\t\t\t}\n\t\t\t\n\t\t\treturn "
-			+ "result;\n\t\t}\n\t}\n";
+	private static final String NESTED_CACHE_CLASS = "\tprivate static class FindViewCache{\n\t\tprivate static SparseArray<View> cache =  new SparseArray<View>();\n\t\t\n\t\tpublic static View getCachedView(Activity activity, int viewID){\n\t\t\tView result = cache.get(viewID);\n\t\t\t\n\t\t\tif(result==null){\n\t\t\t\tresult = activity.findViewById(viewID);\n\t\t\t\tcache.put(viewID, result);\n\t\t\t}\n\t\t\t\n\t\t\treturn result;\n\t\t}\n\t}\n";
 
 	@Override
 	public IStatus process(Map<Role, List<EObject>> roleBindings,
@@ -71,7 +64,8 @@ public class CreateFindViewByIdCache extends AbstractRefactoringPostProcessor {
 						ClassifiersPackage.Literals.CLASS, 
 						org.emftext.language.java.classifiers.Class.class).get(0);
 		
-		containingClass.getAllInnerClassifiers().add(nestedCache);
+		containingClass.getMembers().get(0).addBeforeContainingStatement(nestedCache);		
+		
 		
 		//containingClass.addBeforeContainingStatement(nestedCache);
 		//containingClass.getFields().get(0).addBeforeContainingStatement(nestedCache);

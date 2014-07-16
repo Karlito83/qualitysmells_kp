@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.internal.operations.ExpansionRegionOperations;
 import org.emftext.commons.layout.LayoutInformation;
 import org.emftext.language.java.annotations.AnnotationAttribute;
 import org.emftext.language.java.annotations.AnnotationInstance;
@@ -104,10 +106,23 @@ public class ReplaceSlowForLoop extends
 	private Variable getIterableVariable(Variable indexVariable, RelationExpression condition){
 		Variable result = null;
 		
+		System.out.println(condition.getChildren().size());
 		for(RelationExpressionChild relationExpressionChild : condition.getChildren()){
+			
 			if (relationExpressionChild instanceof IdentifierReference){
 				IdentifierReference ref = (IdentifierReference)relationExpressionChild;
-				test(ref);
+				ReferenceableElement target = ref.getTarget();
+				if(target.eIsProxy()){
+					EcoreUtil.resolveAll(condition);
+					EcoreUtil.resolveAll(ref);
+				}
+				System.out.println(ref.getTarget().eClass().getName());
+				System.out.println(ref.getTarget().getName());
+				if (ref.getTarget() instanceof Variable) {
+					System.out.println("yay!");
+					
+				}
+				//test(ref);
 				
 			}
 			if (relationExpressionChild instanceof AdditiveExpression){
@@ -125,7 +140,7 @@ public class ReplaceSlowForLoop extends
 		System.out.println(ref.eClass().getEAllContainments().size());
 		System.out.println(ref.eClass().getName());
 		System.out.println(ref.getContainingConcreteClassifier());
-		System.out.println(ref.getTarget().eClass().getName());
+		System.out.println("Test:" + ref.getTarget().eClass().getName());
 		
 		System.out.println(ref.getTarget().eClass().getEAllContainments().size());
 		
@@ -171,12 +186,25 @@ public class ReplaceSlowForLoop extends
 					(AssignmentExpression)expressionList.getExpressions().get(0);
 			System.out.println(assignmentExpression.getChild().eClass().getName());
 			IdentifierReference ref = (IdentifierReference)assignmentExpression.getChild();
-			EStructuralFeature feature = ref.eClass().getEStructuralFeature("target");
-			Object test = ref.eGet(feature);
-			System.out.println(test);
+			System.out.println(ref.getTarget().getName());
+			System.out.println(determineVariable(ref));
+			System.out.println(determineVariable(ref.getTarget()));
 		}
 		
 		
+		return result;
+	}
+	
+	private Variable determineVariable(EObject obj){
+		Variable result = null;
+		
+		TreeIterator<EObject> iterator = obj.eAllContents();
+		while (iterator.hasNext()) {
+			EObject eObject = (EObject) iterator.next();
+			if (eObject instanceof Variable) {
+				return result;
+			}
+		}
 		return result;
 	}
 

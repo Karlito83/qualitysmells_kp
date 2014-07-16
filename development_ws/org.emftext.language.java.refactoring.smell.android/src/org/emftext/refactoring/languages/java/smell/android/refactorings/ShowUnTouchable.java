@@ -44,7 +44,7 @@ public class ShowUnTouchable extends AbstractRefactoringPostProcessor {
 		
 		Object element = "48";
 		
-		for (i=1;i==10;i++)
+		for (int i=1;i==10;i++)
 		{
 		arguments.set(i, element);
 		}
